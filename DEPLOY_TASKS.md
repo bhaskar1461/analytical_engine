@@ -1,0 +1,72 @@
+# Deployment Task Checklist
+
+Use this as your execution board.
+
+## Phase A - Setup
+
+- [ ] A1. Create Supabase project
+- [ ] A2. Create Upstash Redis database
+- [ ] A3. Create Razorpay keys/webhook secret
+- [ ] A4. Push repo to GitHub
+
+## Phase B - Database
+
+- [ ] B1. Apply `supabase/migrations/0001_init.sql`
+- [ ] B2. Apply `supabase/migrations/0002_expand_exchange_scope.sql`
+- [ ] B3. Optional seed `supabase/seed/001_nifty_seed.sql`
+- [ ] B4. Verify `stocks.exchange` supports `NSE/BSE/NYSE`
+
+## Phase C - Render Services
+
+- [ ] C1. Create services from `render.yaml`
+- [ ] C2. Set API env vars (including `API_INTERNAL_TOKEN`, `ADMIN_SYNC_KEY`)
+- [ ] C3. Set intelligence env vars (including `API_INTERNAL_TOKEN`, `ADMIN_SYNC_KEY`)
+- [ ] C4. Confirm API health: `/api/health`
+- [ ] C5. Confirm intelligence health: `/health`
+
+## Phase D - Initial Data Sync
+
+- [ ] D1. Trigger market sync (`POST /api/admin/sync/market-universe`)
+- [ ] D2. Check sync status (`GET /api/admin/sync/market-universe/status`)
+- [ ] D3. Verify exchange counts > 0 for NSE/BSE/NYSE
+
+## Phase E - Vercel Web Deploy
+
+- [ ] E1. Import repo into Vercel
+- [ ] E2. Set env vars:
+  - [ ] `NEXT_PUBLIC_API_BASE_URL`
+  - [ ] `NEXT_PUBLIC_SUPABASE_URL`
+  - [ ] `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- [ ] E3. Deploy production build
+
+## Phase F - Validation
+
+- [ ] F1. Open `/`
+- [ ] F2. Open `/stocks`
+- [ ] F3. Open `/stock/RELIANCE.NS`
+- [ ] F4. Open `/quiz`, `/portfolio`, `/sip`, `/donate`, `/watchlist`
+- [ ] F5. In `/stocks`, test `Load Status`
+- [ ] F6. In `/stocks`, test `Run Full Sync`
+- [ ] F7. Validate disclaimers on AI pages
+
+## Phase G - Launch Signoff
+
+- [ ] G1. Complete `LAUNCH_CHECKLIST.md`
+- [ ] G2. Save final production URLs
+- [ ] G3. Share admin runbook with your team
+
+## Production URLs (fill this)
+
+- API: 
+- Intelligence: 
+- Web: 
+- Supabase: 
+- Upstash: 
+
+## Secret Registry (fill this securely)
+
+- `API_INTERNAL_TOKEN`: set
+- `ADMIN_SYNC_KEY`: set
+- `SUPABASE_SERVICE_ROLE_KEY`: set
+- `SUPABASE_JWT_SECRET`: set
+- `RAZORPAY_WEBHOOK_SECRET`: set

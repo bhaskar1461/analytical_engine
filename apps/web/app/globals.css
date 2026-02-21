@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  color: #e2e8f0;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(20, 184, 166, 0.24), transparent 28%),
+    radial-gradient(circle at 82% 22%, rgba(59, 130, 246, 0.18), transparent 35%),
+    linear-gradient(135deg, #020617 0%, #0b1222 45%, #111827 100%);
+  font-family: 'Space Grotesk', 'Manrope', ui-sans-serif, system-ui;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container-shell {
+  margin: 0 auto;
+  width: min(1100px, calc(100vw - 1.5rem));
+}
+
+@media (max-width: 640px) {
+  .container-shell {
+    width: min(1100px, calc(100vw - 1rem));
+  }
+}

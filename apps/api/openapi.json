@@ -1,0 +1,296 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Anylical Engine API",
+    "version": "0.1.0",
+    "description": "India-first Gen-Z stock intelligence gateway API"
+  },
+  "components": {
+    "schemas": {}
+  },
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "Health check",
+        "tags": [
+          "health"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/admin/sync/market-universe/status": {
+      "get": {
+        "summary": "Get latest market universe sync status",
+        "tags": [
+          "admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/admin/sync/market-universe": {
+      "post": {
+        "summary": "Trigger market universe sync (NSE/BSE/NYSE)",
+        "tags": [
+          "admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/stocks/search": {
+      "get": {
+        "summary": "Search stocks",
+        "tags": [
+          "stocks"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "q",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "sector",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "NSE",
+                "BSE",
+                "NYSE"
+              ]
+            },
+            "in": "query",
+            "name": "exchange",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "number"
+            },
+            "in": "query",
+            "name": "page",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/stocks/{symbol}": {
+      "get": {
+        "summary": "Get stock overview",
+        "tags": [
+          "stocks"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "symbol",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/stocks/{symbol}/trust-score": {
+      "get": {
+        "summary": "Get trust score",
+        "tags": [
+          "stocks"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "symbol",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/stocks/{symbol}/news": {
+      "get": {
+        "summary": "Get stock news sentiment feed",
+        "tags": [
+          "stocks"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "symbol",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/stocks/{symbol}/social": {
+      "get": {
+        "summary": "Get social sentiment snapshot",
+        "tags": [
+          "stocks"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "symbol",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/quiz/submit": {
+      "post": {
+        "summary": "Submit risk quiz and get persona",
+        "tags": [
+          "quiz"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/portfolio/generate": {
+      "post": {
+        "summary": "Generate educational portfolio plan",
+        "tags": [
+          "portfolio"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/sip/generate": {
+      "post": {
+        "summary": "Generate SIP suggestion",
+        "tags": [
+          "sip"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/donate/create-link": {
+      "post": {
+        "summary": "Create Razorpay donation link payload",
+        "tags": [
+          "donation"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/donate/webhook": {
+      "post": {
+        "summary": "Razorpay donation webhook",
+        "tags": [
+          "donation"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/api/user/watchlist": {
+      "get": {
+        "summary": "Get user watchlist",
+        "tags": [
+          "user"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add stock to watchlist",
+        "tags": [
+          "user"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove stock from watchlist",
+        "tags": [
+          "user"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    }
+  }
+}

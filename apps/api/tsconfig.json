@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "types": ["node"],
+    "paths": {
+      "@anylical/shared-types": ["../../packages/shared-types/src/index.ts"],
+      "@anylical/config": ["../../packages/config/src/index.ts"]
+    }
+  },
+  "include": ["src/**/*.ts"]
+}
