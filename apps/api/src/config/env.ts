@@ -5,6 +5,7 @@ config();
 
 const EnvSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
+  PORT: z.coerce.number().optional(),
   API_PORT: z.coerce.number().default(4000),
   APP_BASE_URL: z.string().url().default('http://localhost:3000'),
   INTELLIGENCE_BASE_URL: z.string().url().default('http://localhost:8000'),

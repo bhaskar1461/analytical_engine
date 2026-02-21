@@ -32,11 +32,12 @@
 
 ## Deployment
 
-- Vercel web deployment guide: `DEPLOY_VERCEL.md`
+- Railway deployment guide: `DEPLOY_VERCEL.md`
 - Launch readiness gate: `LAUNCH_CHECKLIST.md`
 
-## Scheduled Jobs (Render)
+## Scheduled Jobs (GitHub Actions)
 
+- Workflow: `.github/workflows/scheduled-jobs.yml`
 - `market_sync` daily `01:00 IST`
 - `financial_sync` weekly `02:00 IST`
 - `trust_recompute` nightly `03:00 IST`
@@ -49,7 +50,7 @@
 
 1. Confirm stale fallback behavior on stock pages.
 2. Validate cache serving (`staleData=true`).
-3. Check job errors in Render logs.
+3. Check job errors in GitHub Actions run logs.
 4. Keep UI warnings active until provider recovers.
 
 ### Trust score anomalies

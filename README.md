@@ -66,7 +66,7 @@ API endpoints implemented:
 
 ## Deployment
 
-- Vercel frontend deployment runbook: `DEPLOY_VERCEL.md`
+- Railway + GitHub Actions deployment runbook: `DEPLOY_VERCEL.md`
 - Deployment execution checklist: `DEPLOY_TASKS.md`
 - Release gating checklist: `LAUNCH_CHECKLIST.md`
 

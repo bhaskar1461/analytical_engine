@@ -16,28 +16,31 @@ Use this as your execution board.
 - [ ] B3. Optional seed `supabase/seed/001_nifty_seed.sql`
 - [ ] B4. Verify `stocks.exchange` supports `NSE/BSE/NYSE`
 
-## Phase C - Render Services
+## Phase C - Railway Backend + GitHub Automation
 
-- [ ] C1. Create services from `render.yaml`
-- [ ] C2. Set API env vars (including `API_INTERNAL_TOKEN`, `ADMIN_SYNC_KEY`)
-- [ ] C3. Set intelligence env vars (including `API_INTERNAL_TOKEN`, `ADMIN_SYNC_KEY`)
-- [ ] C4. Confirm API health: `/api/health`
-- [ ] C5. Confirm intelligence health: `/health`
+- [ ] C1. Create Railway project
+- [ ] C2. Create `anylical-intelligence` service (`services/intelligence`)
+- [ ] C3. Create `anylical-api` service (repo root + `pnpm --filter @anylical/api ...`)
+- [ ] C4. Set API env vars (including `API_INTERNAL_TOKEN`, `ADMIN_SYNC_KEY`)
+- [ ] C5. Set intelligence env vars (including `API_INTERNAL_TOKEN`, `ADMIN_SYNC_KEY`)
+- [ ] C6. Add GitHub Actions repository secrets for `.github/workflows/scheduled-jobs.yml`
+- [ ] C7. Confirm API health: `/api/health`
+- [ ] C8. Confirm intelligence health: `/health`
 
 ## Phase D - Initial Data Sync
 
-- [ ] D1. Trigger market sync (`POST /api/admin/sync/market-universe`)
+- [ ] D1. Run `market_sync` once from GitHub Actions (`workflow_dispatch`)
 - [ ] D2. Check sync status (`GET /api/admin/sync/market-universe/status`)
 - [ ] D3. Verify exchange counts > 0 for NSE/BSE/NYSE
 
-## Phase E - Vercel Web Deploy
+## Phase E - Railway Web Deploy
 
-- [ ] E1. Import repo into Vercel
+- [ ] E1. Create `anylical-web` Railway service (repo root + `pnpm --filter @anylical/web ...`)
 - [ ] E2. Set env vars:
   - [ ] `NEXT_PUBLIC_API_BASE_URL`
   - [ ] `NEXT_PUBLIC_SUPABASE_URL`
   - [ ] `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- [ ] E3. Deploy production build
+- [ ] E3. Confirm web health: `/`
 
 ## Phase F - Validation
 
@@ -57,11 +60,11 @@ Use this as your execution board.
 
 ## Production URLs (fill this)
 
-- API: 
-- Intelligence: 
-- Web: 
-- Supabase: 
-- Upstash: 
+- API:
+- Intelligence:
+- Web:
+- Supabase:
+- Upstash:
 
 ## Secret Registry (fill this securely)
 

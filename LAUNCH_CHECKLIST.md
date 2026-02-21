@@ -14,7 +14,7 @@ This checklist maps to the MVP acceptance criteria and Week 5 hardening goals.
 - [x] Nightly trust recompute persists `trust_scores` with model version.
 - [x] News ingest writes article-level rows with dedup markers.
 - [x] Social ingest writes Reddit-derived posts with anti-manipulation flags.
-- [x] Market and financial sync jobs are scheduled in `render.yaml`.
+- [x] Market and financial sync jobs are scheduled in `.github/workflows/scheduled-jobs.yml`.
 
 ## 3) Compliance and Safety
 

@@ -7,7 +7,7 @@
 - Intelligence: FastAPI + deterministic scoring engines
 - Data: Supabase Postgres
 - Cache: Upstash Redis (REST API) with in-memory fallback
-- Deploy: Vercel (web), Render (api + intelligence + cron)
+- Deploy: Railway (web + api + intelligence), GitHub Actions (CI + scheduled jobs)
 - Observability: optional Sentry + PostHog telemetry on API and intelligence service
 
 ## Request Flow

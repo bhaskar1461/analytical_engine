@@ -1,0 +1,132 @@
+name: Scheduled Jobs
+
+on:
+  schedule:
+    - cron: '30 19 * * *' # 01:00 IST daily
+    - cron: '30 20 * * 0' # 02:00 IST weekly (Sunday)
+    - cron: '30 21 * * *' # 03:00 IST daily
+    - cron: '*/5 * * * *' # every 5 minutes
+    - cron: '*/10 * * * *' # every 10 minutes
+  workflow_dispatch:
+    inputs:
+      job:
+        description: 'Job to run'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - market_sync
+          - financial_sync
+          - trust_recompute
+          - news_ingest
+          - social_ingest
+
+permissions:
+  contents: read
+
+env:
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+  SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+  NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+
+jobs:
+  market-sync:
+    if: >-
+      (github.event_name == 'schedule' && github.event.schedule == '30 19 * * *') ||
+      (github.event_name == 'workflow_dispatch' &&
+      (github.event.inputs.job == 'all' || github.event.inputs.job == 'market_sync'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: services/intelligence
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install intelligence service
+        run: pip install .
+      - name: Run market sync
+        run: python -m app.jobs.market_sync
+
+  financial-sync:
+    if: >-
+      (github.event_name == 'schedule' && github.event.schedule == '30 20 * * 0') ||
+      (github.event_name == 'workflow_dispatch' &&
+      (github.event.inputs.job == 'all' || github.event.inputs.job == 'financial_sync'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: services/intelligence
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install intelligence service
+        run: pip install .
+      - name: Run financial sync
+        run: python -m app.jobs.financial_sync
+
+  trust-recompute:
+    if: >-
+      (github.event_name == 'schedule' && github.event.schedule == '30 21 * * *') ||
+      (github.event_name == 'workflow_dispatch' &&
+      (github.event.inputs.job == 'all' || github.event.inputs.job == 'trust_recompute'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: services/intelligence
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install intelligence service
+        run: pip install .
+      - name: Run trust recompute
+        run: python -m app.jobs.trust_recompute
+
+  news-ingest:
+    if: >-
+      (github.event_name == 'schedule' && github.event.schedule == '*/5 * * * *') ||
+      (github.event_name == 'workflow_dispatch' &&
+      (github.event.inputs.job == 'all' || github.event.inputs.job == 'news_ingest'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: services/intelligence
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install intelligence service
+        run: pip install .
+      - name: Run news ingest
+        run: python -m app.jobs.news_ingest
+
+  social-ingest:
+    if: >-
+      (github.event_name == 'schedule' && github.event.schedule == '*/10 * * * *') ||
+      (github.event_name == 'workflow_dispatch' &&
+      (github.event.inputs.job == 'all' || github.event.inputs.job == 'social_ingest'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: services/intelligence
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install intelligence service
+        run: pip install .
+      - name: Run social ingest
+        run: python -m app.jobs.social_ingest
